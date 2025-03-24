@@ -1,0 +1,22 @@
+<div class="product">
+    <div class="product-details">
+        <img [src]="getImageUrl(product)" [alt]="product.name" />
+        <div class="product-info">
+            <div class="name">{{product.name}}</div>
+            <div class="description">{{product.description}}</div>
+            <div class="category">Part Type: {{product.category}}</div>
+        </div>
+    </div>
+    <div class="price">
+        <!-- <div [class.old-price]="product.discount > 0"> -->
+        <!-- <div [ngClass]="{ 'old-price': product.discount > 0 }"> -->
+        <div [style.color]="product.discount > 0 ? 'gray' : ''"
+            [ngStyle]="{'color': product.discount > 0 ? 'gray' : ''}" [ngClass]="getDiscountedClasses(product)">
+            {{product.price | currency:'USD'}}
+        </div>
+        <div *ngIf="product.discount > 0" class="discount">
+            {{(product.price - product.price * product.discount) | currency:'USD'}}
+        </div>
+        <button class="cta" (click)="addToCart(product)">Buy</button>
+    </div>
+</div>

@@ -1,0 +1,15 @@
+<div class="container">
+  <div class="filters">
+    <a class="button" (click)="filterCategory='Heads'">Heads</a>
+    <a class="button" (click)="filterCategory='Arms'">Arms</a>
+    <a class="button" (click)="filterCategory='Torsos'">Torsos</a>
+    <a class="button" (click)="filterCategory='Bases'">Bases</a>
+    <a class="button" (click)="filterCategory=''">All</a>
+  </div>
+
+  <ul class="products">
+    <li class="product-item" *ngFor="let currentProduct of getFilteredProducts()">
+      <app-product-details [product]="currentProduct" (buy)="addToCart(currentProduct)"></app-product-details>
+    </li>
+  </ul>
+</div>
