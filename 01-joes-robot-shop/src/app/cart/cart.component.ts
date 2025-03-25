@@ -3,7 +3,7 @@ import { IProduct } from '../catalog/product.model';
 import { CartService } from './cart.service';
 
 @Component({
-  selector: 'bot-cart',
+  selector: 'app-cart',
   templateUrl: './cart.component.html',
   styleUrls: ['./cart.component.css'],
 })
