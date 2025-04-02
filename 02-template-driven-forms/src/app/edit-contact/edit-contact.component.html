@@ -1,0 +1,71 @@
+<div class="content">
+  <h1 class="header">
+    Edit Contact
+  </h1>
+  <form (ngSubmit)="saveContact(form)" #form="ngForm">
+    <section>
+      <nav>Name/Info</nav>
+      <div>
+        <input type="hidden" [ngModel]="contact.id" name="id" />
+        <input placeholder="First Name" [(ngModel)]="contact.firstName" name="firstName" />
+        <input placeholder="Last Name" [(ngModel)]="contact.lastName" name="lastName" />
+        <input type="date" placeholder="Date of Birth" [(ngModel)]="contact.dateOfBirth" name="dateOfBirth" />
+        <div>
+          <span>Favorites Ranking: </span>
+          <input min="0" max="5" type="range" placeholder="Favorites Ranking" [(ngModel)]="contact.favoritesRanking"
+            name="favoritesRanking" />
+          {{contact.favoritesRanking}}
+        </div>
+        <div>
+          <input type="checkbox" [(ngModel)]="contact.personal" name="personal" /> Personal
+        </div>
+      </div>
+    </section>
+    <section>
+      <nav>Phone</nav>
+      <div class="flex-column" ngModelGroup="phone">
+        <div class="flex-group">
+          <input placeholder="Phone" [(ngModel)]="contact.phone.phoneNumber" name="phoneNumber" />
+          <img src="/assets/plus-grey-blue.png" class="add" />
+        </div>
+        <div class="radio">
+          <span *ngFor="let phoneType of phoneTypes">
+            <input type="radio" [value]="phoneType" [(ngModel)]="contact.phone.phoneType" name="phoneType">
+            {{capitalize(phoneType)}}
+          </span>
+        </div>
+      </div>
+    </section>
+    <section>
+      <nav>Address</nav>
+      <div>
+        <div class="address" ngModelGroup="address">
+          <div class="flex-group">
+            <input placeholder="Address" [(ngModel)]="contact.address.streetAddress" name="streetAddress" />
+            <img src="/assets/plus-grey-blue.png" class="add" />
+          </div>
+          <input placeholder="City" [(ngModel)]="contact.address.city" name="city" />
+          <input placeholder="State/Region" [(ngModel)]="contact.address.state" name="state" />
+          <input placeholder="Zip/Postal Code" [(ngModel)]="contact.address.postalCode" name="postalCode" />
+          <select [(ngModel)]="contact.address.addressType" name="addressType">
+            <option value="home">Home</option>
+            <option value="work">Work</option>
+            <option value="other">Other</option>
+          </select>
+        </div>
+      </div>
+    </section>
+    <section>
+      <nav>Notes</nav>
+      <div>
+        <textarea rows="3" placeholder="Notes" [(ngModel)]="contact.notes" name="notes">
+        </textarea>
+      </div>
+    </section>
+    <div class="buttons">
+      <button *ngIf="!form.submitted" class="secondary" type="button">Cancel</button>
+      <button *ngIf="!form.submitted" class="primary" type="submit">Save</button>
+      <button *ngIf="form.submitted" disabled type="button">Saving...</button>
+    </div>
+  </form>
+</div>
