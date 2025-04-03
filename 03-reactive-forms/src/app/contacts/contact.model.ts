@@ -1,14 +1,11 @@
 export interface Contact {
   id: string,
-  icon: string,
   firstName: string,
   lastName: string,
   dateOfBirth: Date | null,
   favoritesRanking: number | null,
-  phones: Phone[],
+  phone: Phone,
   address: Address,
-  personal: boolean,
-  notes: string,
 }
 
 export interface Phone {
@@ -23,7 +20,3 @@ export interface Address {
   postalCode: string,
   addressType: string,
 }
-
-export const phoneTypeValues = ["mobile", "work", "other"];
-
-export const addressTypeValues = ["mobile", "work", "other"];

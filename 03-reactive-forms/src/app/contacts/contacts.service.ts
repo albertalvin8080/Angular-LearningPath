@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { Observable, delay, map } from 'rxjs';
+import { Observable, map } from 'rxjs';
 import { Contact } from './contact.model';
 import { nanoid } from 'nanoid'
 
@@ -31,6 +31,5 @@ export class ContactsService {
     }
     else
       return this.http.put<Contact>('api/contacts/', contact, headers)
-        // .pipe(delay(2000))
   }
 }
