@@ -22,11 +22,12 @@ export class ContactsService {
     return this.http.get<Contact[]>('api/contacts');
   }
 
-  saveContact(contact: Contact): Observable<Contact> {
+  // Partial<T> is a TS object which accepts objects which partially implement a contract.
+  saveContact(contact: Partial<Contact>): Observable<Contact> {
     const headers = { headers: { 'Content-Type': 'application/json' } };
 
     if (!contact.id || contact.id === '') {
-      let newContact: Contact = { ...contact, id: nanoid(5) };
+      let newContact: Partial<Contact> = { ...contact, id: nanoid(5) };
       return this.http.post<Contact>('api/contacts/', newContact, headers)
     }
     else

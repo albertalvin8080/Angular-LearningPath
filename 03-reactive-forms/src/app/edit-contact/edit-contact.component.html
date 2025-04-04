@@ -2,52 +2,82 @@
   <h1 class="header">
     Edit Contact
   </h1>
-  <form>
+  <form [formGroup]="contactForm" (ngSubmit)="saveContact()">
     <section>
       <nav>Name/Info</nav>
       <div>
-        <input placeholder="First Name" />
-        <input placeholder="Last Name" />
-        <input placeholder="Date of Birth" />
-        <input placeholder="Favorites Ranking" />
+        <input formControlName="firstName" placeholder="First Name"
+          [class.error]="firstName.invalid && firstName.touched" />
+        <em *ngIf="firstName.errors?.['required'] && firstName.touched">First Name is required.</em>
+        <em *ngIf="firstName.errors?.['minlength'] && firstName.touched">Must have at least 3 characters.</em>
+        <input formControlName="lastName" placeholder="Last Name" />
+        <input type="date" formControlName="dateOfBirth" placeholder="Date of Birth" />
+        <div>
+          <span>Favorites Ranking:</span>
+          <input type="range" min="0" max="5" formControlName="favoritesRanking">
+          <span>{{contactForm.controls.favoritesRanking.value}}</span>
+        </div>
+        <div>
+          <input type="checkbox" formControlName="personal"> Personal
+        </div>
       </div>
     </section>
     <section>
-      <nav>Phone</nav>
-      <div class="flex-column">
-        <div class="flex-group">
-          <input placeholder="Phone" />
-          <img src="/assets/plus-grey-blue.png" class="add" />
-        </div>
-        <div class="radio">
-          <input type="radio" value="mobile"> Mobile
-          <input type="radio" value="work"> Work
-          <input type="radio" value="other"> Other
+      <nav>Phones</nav>
+      <div formArrayName="phones">
+        <div *ngFor="let phone of contactForm.controls.phones.controls; let i = index;" class="flex-column"
+          [formGroupName]="i">
+          <div class="flex-group">
+            <input placeholder="Phone" formControlName="phoneNumber" />
+            <img src="/assets/plus-grey-blue.png" class="add" (click)="addPhoneGroup()" />
+          </div>
+          <div>
+            <em *ngIf="phone.controls.phoneNumber.errors?.['required']">Preferred phone must be present.</em>
+          </div>
+          <div class="radio">
+            <input type="radio" formGroupName="phoneType" value="mobile"> Mobile
+            <input type="radio" formGroupName="phoneType" value="work"> Work
+            <input type="radio" formGroupName="phoneType" value="other"> Other
+          </div>
+          <span>
+            <input type="checkbox" formControlName="preferred"> Preferred
+          </span>
         </div>
       </div>
     </section>
     <section>
       <nav>Address</nav>
-      <div>
-        <div class="address">
+      <div [class.error]="contactForm.controls.address.invalid">
+        <div class="address" formGroupName="address">
           <div class="flex-group">
-            <input placeholder="Address" />
+            <input placeholder="Address" formControlName="streetAddress" />
             <img src="/assets/plus-grey-blue.png" class="add" />
           </div>
-          <input placeholder="City" />
-          <input placeholder="State/Region" />
-          <input placeholder="Zip/Postal Code" />
-          <select>
+          <input placeholder="City" formControlName="city" />
+          <input placeholder="State/Region" formControlName="state" />
+          <input placeholder="Zip/Postal Code" formControlName="postalCode" />
+          <select formControlName="addressType">
             <option value="home">Home</option>
             <option value="work">Work</option>
             <option value="mobile">Other</option>
           </select>
         </div>
+        <em *ngIf="contactForm.controls.address.invalid">Address must be present.</em>
       </div>
     </section>
+    <section>
+      <nav>Notes</nav>
+      <div>
+        <textarea rows="5" [class.error]="notes.invalid && notes.dirty" placeholder="Notes"
+          formControlName="notes"></textarea>
+        <em *ngIf="notes.errors?.['restrictedWords'] && notes.dirty">
+          Restricted words found: {{ notes.errors?.['restrictedWords'] }}
+        </em>
+      </div>
+    </section>
+    <div class="buttons">
+      <button class="secondary" type="button">Cancel</button>
+      <button class="primary" type="submit" [disabled]="contactForm.invalid">Save</button>
+    </div>
   </form>
-  <div class="buttons">
-    <button class="secondary">Cancel</button>
-    <button class="primary" (click)="saveContact()">Save</button>
-  </div>
 </div>
