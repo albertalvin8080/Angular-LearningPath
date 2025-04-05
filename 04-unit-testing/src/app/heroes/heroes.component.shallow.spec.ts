@@ -46,7 +46,7 @@ describe("HeroesComponent (shallow)", () => {
         mockHeroeService.getHeroes.and.returnValue(of(HEROES));
         fixture.detectChanges(); // also calls ngOnInit()
 
-        // toBe() also checks if the OBJECT is the same, not just the content.
+        // toBe() also checks if the OBJECT is the same, not just the content (?).
         expect(fixture.componentInstance.heroes).toEqual(HEROES);
     });
 
