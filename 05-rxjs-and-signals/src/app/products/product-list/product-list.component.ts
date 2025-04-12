@@ -15,12 +15,15 @@ export class ProductListComponent {
   constructor(private productSvc: ProductService) { }
 
   pageTitle = 'Products';
-  errorMessage = '';
 
-  readonly selectedProduct$ = this.productSvc.selectedProduct$;
+  readonly selectedProductId$ = this.productSvc.selectedProductId$;
+  selectedProductIdSig = this.productSvc.selectedProductIdSig;
 
   // Declarative approach for AsyncPipe
   readonly products$ = this.productSvc.products$;
+
+  productsSig = this.productSvc.productsSig;
+  productsErrSig = this.productSvc.productsErrSig;
 
   onSelected(productId: number): void {
     this.productSvc.selectProduct(productId);
