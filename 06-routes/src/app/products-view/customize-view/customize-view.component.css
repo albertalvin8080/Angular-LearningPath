@@ -1,0 +1,112 @@
+.detail {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+}
+
+.detail h3 {
+  text-align: left;
+  color: rgba(54, 48, 44, 1);
+  font-size: 36px;
+  font-weight: 800;
+  margin: 0 0 10px 0;
+  line-height: 38px;
+}
+
+.image-wrapper {
+  margin-bottom: 20px;
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+}
+
+.image-wrapper img {
+  max-width: 300px;
+  max-height: 300px;
+  min-width: 300px;
+  min-height: 300px;
+  margin-right: 20px;
+  flex-grow: 1;
+}
+
+.form-wrapper label {
+  color: rgba(54, 48, 44, 1);
+  display: block;
+  font-weight: 600;
+  margin-bottom: 11px;
+  text-transform: uppercase;
+}
+
+.form-wrapper textarea {
+  border: 1px solid rgba(54, 48, 44, 0.3);
+  box-sizing: border-box;
+  display: block;
+  font-size: 20px;
+  height: 147px;
+  margin-bottom: 40px;
+  padding: 10px;
+  width: 100%;
+}
+
+.form-wrapper button {
+  background-color: rgba(255, 208, 201, 1);
+  box-shadow:   0px 3px 1px -2px rgba(0, 0, 0, 0.2), 0px 2px 2px 0px rgba(0, 0, 0, 0.14), 0px 1px 5px 0px rgba(0, 0, 0, 0.12);
+  border: 0;
+  border-radius: 10px;
+  color: rgba(54, 48, 44, 1);
+  font-size: 1.2rem;
+  font-weight: 500;
+  width: 100%;
+  margin-top: 10px;
+  padding: 25px;
+}
+
+.form-wrapper button:disabled {
+  background-color: rgb(206, 205, 205);
+  box-shadow: none;
+}
+
+.form-wrapper,
+.form-wrapper-spinner {
+  width: 40%;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  flex-grow: 1;
+}
+
+.form-wrapper-spinner {
+  align-items: center;
+}
+
+.form-wrapper input {
+  background-color: white;
+  border: 1px solid rgba(54, 48, 44, 0.3);
+  border-radius: 6px;
+  box-sizing: border-box;
+  display: block;
+  font-size: 1.2rem;
+  height: 54px;
+  margin-bottom: 20px;
+  padding: 0 10px;
+  width: 100%;
+}
+
+.form-wrapper input.ng-invalid.ng-touched:not(form),
+.form-wrapper textarea.ng-invalid.ng-touched:not(form) {
+  border-left: 10px solid red; /* red */
+}
+
+.form-group {
+  margin-bottom: 20px;
+  margin-top: 20px;
+}
+
+fieldset {
+  border: none;
+}
+
+p.price {
+  font-size: 1.4rem;
+  font-weight: 700;
+}

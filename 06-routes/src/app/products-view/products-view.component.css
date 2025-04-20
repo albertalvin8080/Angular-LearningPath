@@ -1,0 +1,24 @@
+
+.main-content {
+  margin-top: 20px;
+  padding: 0 20px;
+}
+
+.category-wrapper {
+  display: flex;
+}
+
+.side-nav-wrapper {
+  margin-right: 30px;
+  width: 30%;
+  min-width: 30%;
+  max-width: 30%;
+  max-height: 750px;
+  width: 300px;
+  padding: 0;
+}
+
+.detail-wrapper {
+  margin: 10px 20px 10px 50px;
+  max-width: 1000px;
+}
